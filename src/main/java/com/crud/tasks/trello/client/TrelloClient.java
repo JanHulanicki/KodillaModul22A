@@ -23,11 +23,6 @@ public class TrelloClient {
     @Autowired
     private RestTemplate restTemplate;
     public List<TrelloBoardDto> getTrelloBoards() {
-     //   URI url = UriComponentsBuilder.fromHttpUrl(trelloApiEndpoint + trelloUser)
-     //           .queryParam("key", trelloAppKey)
-     //           .queryParam("token", trelloToken)
-     //           .queryParam("fields", "name,id").build().encode().toUri();
-
         TrelloBoardDto[] boardsResponse = restTemplate.getForObject(makeUrl(), TrelloBoardDto[].class);
         if (boardsResponse != null) {
             return Arrays.asList(boardsResponse);
@@ -51,8 +46,9 @@ public class TrelloClient {
                 .queryParam("name", trelloCardDto.getName())
                 .queryParam("desc", trelloCardDto.getDescription())
                 .queryParam("pos", trelloCardDto.getPos())
-                .queryParam("idList", trelloCardDto.getListId())//.build().encode().toUri();
-                .queryParam("badges", "attachmentsByType")
+                .queryParam("idList", trelloCardDto.getListId())
+                .queryParam("badges", "votes,attachmentsByType")
+                .queryParam("votes", trelloCardDto.getBadges().getVotes())
                 .queryParam("attachmentsByType", "trello")
                 .queryParam("trello", "board,card")
                 .queryParam("board", trelloCardDto.getBadges().getAttachmentByType().getTrello().getBoard())

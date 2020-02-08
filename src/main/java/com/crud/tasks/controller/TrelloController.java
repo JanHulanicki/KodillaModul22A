@@ -29,23 +29,6 @@ public class TrelloController {
                     System.out.println(trelloList.getName() + " - " + trelloList.getId() + " - " + trelloList.isClosed()));
 
         });
-
-        // List<TrelloBoardDto> trelloBoards = trelloClient.getTrelloBoards();
-        //  Optional.ofNullable(trelloBoards)
-        //          .orElse(Collections.emptyList())
-        //         .forEach(trelloBoardDto -> {
-        //             if((trelloBoardDto.getName().contains("Kodilla"))) {
-        //                 System.out.println(trelloBoardDto.getId() + " " + trelloBoardDto.getName());
-        //             }
-        //         });
-            //zadanie podpunkt 3
-            //trelloBoards.forEach(trelloBoardDto -> {
-            //  if((trelloBoardDto.getId()!=null)&&
-            //       (trelloBoardDto.getName()!=null)&&
-            //       (trelloBoardDto.getName().contains("Kodilla"))) {
-            //       System.out.println(trelloBoardDto.getId() + " " + trelloBoardDto.getName());
-            //     }
-            // });
     }
     @RequestMapping(method = RequestMethod.POST,value = "createTrelloCard")
     public CreatedTrelloCard createTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
